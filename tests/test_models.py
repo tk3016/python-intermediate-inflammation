@@ -2,7 +2,15 @@
 
 import numpy as np
 import numpy.testing as npt
+import pytest
 
+
+def test_daily_min_string():
+    """ Test for TypeError when passing strings"""
+    from inflammation.models import daily_min
+
+    with pytest.raises(TypeError):
+        error_expected = daily_min([['Hello', 'there'], ['General', 'Kenobi']])
 
 def test_daily_mean_zeros():
     """Test that mean function works for an array of zeros."""
@@ -35,7 +43,7 @@ def test_daily_max():
     from inflammation.models import daily_max
 
     test_input = np.array([[4, 2, 5],
-                           [1, 6, 2], 
+                           [1, 6, 2],
                            [4, 1, 9]])
     test_result = np.array([4, 6, 9])
 
@@ -47,7 +55,7 @@ def test_daily_min():
     from inflammation.models import daily_min
 
     test_input = np.array([[4, -2, 5],
-                           [1, -6, 2], 
+                           [1, -6, 2],
                            [-4, -1, 9]])
     test_result = np.array([-4, -6, 2])
 
